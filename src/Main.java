@@ -8,6 +8,24 @@ public class Main {
         shuffleDeck(newDeck);
         System.out.println("Shuffled Deck: ");
         printDeck(newDeck);
+
+
+        // Player decks
+        Card[] computerDeck = new Card[5];
+        Card[] userDeck = new Card[5];
+
+        handoutGamecards(newDeck, computerDeck, userDeck);
+
+        System.out.println("User's Deck");
+        printDeck(userDeck);
+    }
+
+    private static void handoutGamecards(Card[] gameDeck, Card[] computerDeck, Card[] userDeck){
+        for(int i=0; i<5; i++){
+
+            computerDeck[i] = gameDeck[i]; //gave computer first 5 cards
+            userDeck[i] = gameDeck[gameDeck.length -1 -i]; //gave user last 5 cards
+        }
     }
 
     private static Card[] createDeck() {
