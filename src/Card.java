@@ -9,6 +9,8 @@ public class Card {
         this.sign = sign;
     }
     public String toString() {
-        return color + " " + value;
+        return color + " " + value*sign;
     }
 }
+
+
