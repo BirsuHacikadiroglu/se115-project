@@ -55,12 +55,8 @@ public class Main {
         printDeck(userHand);
         System.out.println("***********");
 
-        //System.out.println("First Card: " + currentCard.toString());
-
 
         playGame(newDeck, computerHand, userHand, computerBoard, userBoard);
-
-
     }
 
     // Creating a gamedeck --> Requirement 1
@@ -131,7 +127,7 @@ public class Main {
     private static Card[] removeCard(Card[] array, int index) {
         Card[] newArr = new Card[array.length - 1];
         System.arraycopy(array, 0, newArr, 0, index); //copying the cards that come before
-        System.arraycopy(array, index + 1, newArr, index, array.length - index - 1); //copying the ones that comes after
+        System.arraycopy(array, index + 1, newArr, index, array.length - index - 1); //comes after
         return newArr;
     }
 
@@ -242,7 +238,6 @@ public class Main {
         boolean gameEnded = false;
         boolean userStand = false;
 
-
         while (!gameEnded) {
             // Taking turns between players and
             // letting them decide on their moves ->> Requirement 5
@@ -261,7 +256,6 @@ public class Main {
                     case 1:
                         userTurn = false;
 
-
                         break;
 
                     case 2:
@@ -271,8 +265,6 @@ public class Main {
                         break;
 
                     case 3:
-                       // System.out.println("User's Hand:");
-                        //printDeck(userHand);
 
                         System.out.println("Choose a card to play (1-4):");
                         int cardIndex = sc.nextInt() - 1;
@@ -282,7 +274,7 @@ public class Main {
                             System.out.println("Played Card: " + playedCard.toString());
                             userHand = removeCard(userHand, cardIndex);
                             userBoard = addCardToBoard(userBoard, playedCard);
-                            //evaluateMove(playedCard, userBoard);
+                            evaluateMove(playedCard, userBoard);
 
                             // End the turn after playing a card
                             userTurn = false;
@@ -298,8 +290,9 @@ public class Main {
                 Card drawnCard = drawCard(newDeck);
                 computerBoard = addCardToBoard(computerBoard, drawnCard);
                 newDeck=removeCard(newDeck, newDeck.length-1);
-                //evaluateMove(drawnCard, computerBoard);
+                evaluateMove(drawnCard, computerBoard);
 
+                //comp decides to end its turn
                 userTurn = true;
 
 
@@ -330,6 +323,8 @@ public class Main {
 
         }
         sc.close();
+
+
 }
 
 
@@ -382,7 +377,7 @@ public class Main {
     public static void shuffleDeck(Card[] deck) {
         Random rand = new Random();
         for (int i = 0; i < deck.length - 1; i++) {
-            int j = rand.nextInt(i + 1);
+            int j = rand.nextInt(i + 1); //assigned a random index to j
             Card temp = deck[i];
             deck[i] = deck[j];
             deck[j] = temp;
